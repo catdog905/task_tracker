@@ -9,17 +9,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ru.innopolis.university.task_tracker.forms.ProjectSubmitForm;
 import ru.innopolis.university.task_tracker.models.Project;
 import ru.innopolis.university.task_tracker.repositories.ProjectsRepository;
+import ru.innopolis.university.task_tracker.services.ProjectService;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 @Controller
 public class ProjectsListController {
     private final ProjectsRepository projectsRepository;
+    private final ProjectService projectService;
 
-    @Autowired
-    public ProjectsListController(ProjectsRepository projectsRepository) {
+    public ProjectsListController(ProjectsRepository projectsRepository, ProjectService projectService) {
         this.projectsRepository = projectsRepository;
+        this.projectService = projectService;
     }
 
     @GetMapping("/")
@@ -45,17 +46,12 @@ public class ProjectsListController {
     }
 
     @PostMapping("/projects_list/{project_id}/submit_data")
-    public String submitData(@PathVariable("project_id") Long projectId, ProjectSubmitForm projectSubmitForm) throws ParseException {
-        SimpleDateFormat format = new SimpleDateFormat("yyy-MM-dd'T'HH:mm");
-        projectsRepository.save(Project.builder()
-                .id(projectId)
-                .name(projectSubmitForm.getName())
-                .startDate(format.parse(projectSubmitForm.getStartDate()))
-                .completionDate(format.parse(projectSubmitForm.getCompletionDate()))
-                .status(projectSubmitForm.getStatus())
-                .taskSet(projectsRepository.getById(projectId).getTaskSet())
-                .priority(projectSubmitForm.getPriority())
-                .build());
+    public String submitData(@PathVariable("project_id") Long projectId, ProjectSubmitForm projectSubmitForm) {
+        try {
+            projectService.submitData(projectId, projectSubmitForm);
+        } catch (ParseException e) {
+            return "redirect:/error/submit_data_error";
+        }
         return "redirect:/projects_list/" + projectId;
     }
 
@@ -63,14 +59,13 @@ public class ProjectsListController {
 
     @GetMapping("/projects_list/delete_project/{project_id}")
     public String deleteProject(@PathVariable("project_id") Long projectId) {
-        projectsRepository.deleteById(projectId);
+        projectService.deleteProject(projectId);
         return "redirect:/projects_list/";
     }
 
     @GetMapping("/projects_list/create_project")
-    public String deleteProject() {
-        Project project = new Project();
-        projectsRepository.save(project);
+    public String createProject() {
+        projectService.createProject();
         return "redirect:/projects_list/";
     }
 }
