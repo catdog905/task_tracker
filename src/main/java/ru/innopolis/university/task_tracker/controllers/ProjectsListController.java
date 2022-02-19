@@ -1,14 +1,14 @@
 package ru.innopolis.university.task_tracker.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.innopolis.university.task_tracker.DTO.ProjectDTO;
+import ru.innopolis.university.task_tracker.forms.ProjectsSortForm;
+import ru.innopolis.university.task_tracker.forms.TasksSortForm;
 import ru.innopolis.university.task_tracker.forms.ProjectSubmitForm;
-import ru.innopolis.university.task_tracker.models.Project;
 import ru.innopolis.university.task_tracker.repositories.ProjectsRepository;
 import ru.innopolis.university.task_tracker.services.ProjectService;
 
@@ -59,7 +59,27 @@ public class ProjectsListController {
         return "redirect:/projects_list/" + projectId;
     }
 
+    @PostMapping("/projects_list/{project_id}/sort")
+    public String sortTasks(@PathVariable("project_id") Long projectId, TasksSortForm tasksSortForm,
+                            ModelMap modelMap) {
+        modelMap.addAttribute("project", projectService.getProjectDTOWithSortedTaskList(
+                    new ProjectDTO(projectsRepository.findById(projectId)
+                        .orElseThrow(IndexOutOfBoundsException::new)),
+                tasksSortForm.getTasksSortBy(),
+                tasksSortForm.getHowSort()));
+        return "project_info";
+    }
 
+    @PostMapping("/projects_list/sort")
+    public String sortTasks(ProjectsSortForm projectsSortForm,
+                            ModelMap modelMap) {
+        modelMap.addAttribute("projects", projectService.sortProjectDTOListAccordingConditions(
+                projectsRepository.findAll().stream().map(ProjectDTO::new).collect(Collectors.toList()),
+                projectsSortForm.getProjectSortBy(),
+                projectsSortForm.getHowSort()
+                ));
+        return "projects_list";
+    }
 
     @GetMapping("/projects_list/delete_project/{project_id}")
     public String deleteProject(@PathVariable("project_id") Long projectId) {

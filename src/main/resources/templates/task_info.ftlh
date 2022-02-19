@@ -34,7 +34,7 @@
                 </td>
             </tr>
             <tr>
-                <td style="text-align: center;">Status</td>
+                <td style="text-align: center;"><b>Status</b></td>
                 <td style="text-align: center;">${task.status}</td>
                 <td style="text-align: center;">
                     <select id="status" name="status">
@@ -51,7 +51,7 @@
                 </td>
             </tr>
             <tr>
-                <td style="text-align: center;">Priority</td>
+                <td style="text-align: center;"><b>Priority</b></td>
                 <td style="text-align: center;">${task.priority}</td>
                 <td style="text-align: center;">
                     <input id="priority" name="priority" value="${task.priority}" required>

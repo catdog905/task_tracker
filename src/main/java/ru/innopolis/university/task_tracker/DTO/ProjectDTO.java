@@ -23,6 +23,16 @@ public class ProjectDTO {
     private int priority = 0;
     private List<Task> taskSet;
 
+    public ProjectDTO(ProjectDTO projectDTO) {
+        id = projectDTO.id;
+        name = projectDTO.name;
+        startDate = projectDTO.startDate;
+        completionDate = projectDTO.completionDate;
+        status = projectDTO.status;
+        priority = projectDTO.priority;
+        taskSet = projectDTO.taskSet;
+    }
+
     public ProjectDTO(Project project) {
         SimpleDateFormat format = new SimpleDateFormat("yyy-MM-dd'T'HH:mm");
         id = project.getId();
@@ -32,5 +42,6 @@ public class ProjectDTO {
         status = project.getStatus();
         priority = project.getPriority();
         taskSet = project.getTaskSet();
+
     }
 }

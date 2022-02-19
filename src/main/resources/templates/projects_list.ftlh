@@ -17,7 +17,7 @@
             <div class="btn-group">
                 <table>
                     <tr>
-                        <td><b>Project name:<b/></td>
+                        <td><b>Project name:</b></td>
                     </tr>
                     <#list projects as project>
                         <tr>
@@ -38,6 +38,41 @@
                         </tr>
                     </#list>
                 </table>
+                <table><tbody>
+                        <form method="post" action="/projects_list/sort">
+                    <tr>
+                        <td>Sort by:</td>
+                        <td>
+                            <select name="projectSortBy" id="tasksSortBy">
+                                <option value="NAME"> Name</option>
+                                <option value="START_DATE">Start date</option>
+                                <option value="COMPLETION_DATE">Completion date</option>
+                                <option value="STATUS">Status</option>
+                                <option value="PRIORITY">Priority</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>How sort:</td>
+                        <td>
+                            <select id="howSort" name="howSort">
+                                <option value="ASCENDING">
+                                    Ascending
+                                </option>
+                                <option value="DESCENDING">
+                                    Descending
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <button type="submit">
+                            Sort
+                        </button>
+                    </tr>
+                    </form>
+                    </tr>
+                    </tbody></table>
             </div>
         </div>
     </div>

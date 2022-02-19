@@ -85,6 +85,36 @@
         <td>
             <table >
                                 <tbody>
+                                <form method="post" action="/projects_list/${project.id}/sort">
+                                <tr>
+                                    <td>Sort by:</td>
+                                    <td>
+                                        <select name="tasksSortBy" id="tasksSortBy">
+                                            <option value="NAME"> Name</option>
+                                            <option value="STATUS">Status</option>
+                                            <option value="PRIORITY">Priority</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>How sort:</td>
+                                    <td>
+                                        <select id="howSort" name="howSort">
+                                            <option value="ASCENDING">
+                                                Ascending
+                                            </option>
+                                            <option value="DESCENDING">
+                                                Descending
+                                            </option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <button type="submit">
+                                        Sort
+                                    </button>
+                                </tr>
+                                </form>
                                 <tr>
                                     <td><b>Tasks:</b></td>
                                 </tr>
