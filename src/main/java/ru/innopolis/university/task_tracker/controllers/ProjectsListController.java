@@ -6,12 +6,14 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import ru.innopolis.university.task_tracker.DTO.ProjectDTO;
 import ru.innopolis.university.task_tracker.forms.ProjectSubmitForm;
 import ru.innopolis.university.task_tracker.models.Project;
 import ru.innopolis.university.task_tracker.repositories.ProjectsRepository;
 import ru.innopolis.university.task_tracker.services.ProjectService;
 
 import java.text.ParseException;
+import java.util.stream.Collectors;
 
 @Controller
 public class ProjectsListController {
@@ -30,7 +32,8 @@ public class ProjectsListController {
 
     @GetMapping("/projects_list")
     public String getProjectListPage(ModelMap modelMap) {
-        modelMap.addAttribute("projects", projectsRepository.findAll());
+        modelMap.addAttribute("projects", projectsRepository.findAll().stream()
+                .map(ProjectDTO::new).collect(Collectors.toList()));
         return "projects_list";
     }
 
@@ -38,7 +41,8 @@ public class ProjectsListController {
     public String getProjectPage(@PathVariable("project_id") Long projectId, ModelMap modelMap) {
         try {
             modelMap.addAttribute("project",
-                    projectsRepository.findById(projectId).orElseThrow(IndexOutOfBoundsException::new));
+                    new ProjectDTO(projectsRepository.findById(projectId)
+                            .orElseThrow(IndexOutOfBoundsException::new)));
         } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
             return "redirect:/error/no_such_project";
         }

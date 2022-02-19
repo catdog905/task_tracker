@@ -5,6 +5,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import ru.innopolis.university.task_tracker.DTO.TaskDTO;
 import ru.innopolis.university.task_tracker.forms.TaskSubmitForm;
 import ru.innopolis.university.task_tracker.models.Project;
 import ru.innopolis.university.task_tracker.models.Task;
@@ -27,7 +28,8 @@ public class TaskController {
     public String getTaskPage(@PathVariable("task_id") Long taskId, ModelMap modelMap) {
         try {
             modelMap.addAttribute("task",
-                    tasksRepository.findById(taskId).orElseThrow(IndexOutOfBoundsException::new));
+                    new TaskDTO(tasksRepository.findById(taskId)
+                            .orElseThrow(IndexOutOfBoundsException::new)));
         } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
             return "redirect:/error/no_such_task";
         }

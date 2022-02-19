@@ -20,7 +20,6 @@ public class Task {
     private TaskStatus status = TaskStatus.TODO;
     private int priority = 0;
 
-    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="project_id")
     private Project project;
@@ -31,10 +30,4 @@ public class Task {
         status = taskSubmitForm.getStatus();
         priority = taskSubmitForm.getPriority();
     }
-
-    @Override
-    public int hashCode() {
-        return 0;
-    }
-
 }
