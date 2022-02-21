@@ -3,11 +3,8 @@ package ru.innopolis.university.task_tracker.controllers.api;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.innopolis.university.task_tracker.DTO.ProjectDTO;
 import ru.innopolis.university.task_tracker.DTO.TaskDTO;
-import ru.innopolis.university.task_tracker.models.Project;
 import ru.innopolis.university.task_tracker.models.Task;
-import ru.innopolis.university.task_tracker.repositories.ProjectsRepository;
 import ru.innopolis.university.task_tracker.repositories.TasksRepository;
 
 import java.util.List;

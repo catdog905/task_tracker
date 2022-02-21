@@ -1,7 +1,6 @@
 package ru.innopolis.university.task_tracker.models;
 
 import lombok.*;
-import ru.innopolis.university.task_tracker.forms.TaskSubmitForm;
 
 import javax.persistence.*;
 
