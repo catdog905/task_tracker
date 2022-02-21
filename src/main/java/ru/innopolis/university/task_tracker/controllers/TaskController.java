@@ -23,7 +23,7 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-
+    /*
     @GetMapping("/task_list/{task_id}")
     public String getTaskPage(@PathVariable("task_id") Long taskId, ModelMap modelMap) {
         try {
@@ -52,5 +52,5 @@ public class TaskController {
     public String createTask(@PathVariable("project_id") Long projectId) {
         taskService.createTask(projectId);
         return "redirect:/projects_list/" + projectId;
-    }
+    }*/
 }

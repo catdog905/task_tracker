@@ -25,7 +25,7 @@ public class ProjectsListController {
         this.projectService = projectService;
     }
 
-    @GetMapping("/")
+    /*@GetMapping("/")
     public String getIndex() {
         return "redirect:/projects_list";
     }
@@ -91,5 +91,5 @@ public class ProjectsListController {
     public String createProject() {
         projectService.createProject();
         return "redirect:/projects_list/";
-    }
+    }*/
 }

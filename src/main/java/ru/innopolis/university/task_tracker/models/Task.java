@@ -15,19 +15,8 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name = "Task template";
-    private String description = "";
-    private TaskStatus status = TaskStatus.TODO;
-    private int priority = 0;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="project_id")
-    private Project project;
-
-    public Task(TaskSubmitForm taskSubmitForm) {
-        name = taskSubmitForm.getName();
-        description = taskSubmitForm.getDescription();
-        status = taskSubmitForm.getStatus();
-        priority = taskSubmitForm.getPriority();
-    }
+    private String name;
+    private String description;
+    private TaskStatus status;
+    private int priority;
 }

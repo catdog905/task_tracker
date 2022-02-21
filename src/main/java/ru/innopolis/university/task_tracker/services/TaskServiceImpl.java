@@ -25,7 +25,7 @@ public class TaskServiceImpl implements TaskService {
                 .description(taskSubmitForm.getDescription())
                 .status(taskSubmitForm.getStatus())
                 .priority(taskSubmitForm.getPriority())
-                .project(tasksRepository.getById(taskId).getProject())
+        //        .project(tasksRepository.getById(taskId).getProject())
                 .build());
     }
 
@@ -37,10 +37,12 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void createTask(Long projectId) {
         Task task = new Task();
+        // REV: possible problem with new entity
         tasksRepository.save(task);
+        // REV: throw here instead
         Project project = projectsRepository.findById(projectId).orElse(new Project());
-        task.setProject(project);
-        project.getTaskSet().add(task);
+       // task.setProject(project);
+        //project.getTaskSet().add(task);
         projectsRepository.save(project);
     }
 }

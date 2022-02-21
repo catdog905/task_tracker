@@ -1,5 +1,6 @@
 package ru.innopolis.university.task_tracker.DTO;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import ru.innopolis.university.task_tracker.models.Project;
 import ru.innopolis.university.task_tracker.models.ProjectStatus;
@@ -15,33 +16,13 @@ import java.util.List;
 @Getter
 @Builder
 public class ProjectDTO {
-    private Long id;
-    private String name = "Template of the project";
-    private String startDate = "";
-    private String completionDate = "";
-    private ProjectStatus status = ProjectStatus.NOT_STARTED;
-    private int priority = 0;
-    private List<Task> taskSet;
-
-    public ProjectDTO(ProjectDTO projectDTO) {
-        id = projectDTO.id;
-        name = projectDTO.name;
-        startDate = projectDTO.startDate;
-        completionDate = projectDTO.completionDate;
-        status = projectDTO.status;
-        priority = projectDTO.priority;
-        taskSet = projectDTO.taskSet;
-    }
-
-    public ProjectDTO(Project project) {
-        SimpleDateFormat format = new SimpleDateFormat("yyy-MM-dd'T'HH:mm");
-        id = project.getId();
-        name = project.getName();
-        startDate = format.format(project.getStartDate());
-        completionDate = format.format(project.getCompletionDate());
-        status = project.getStatus();
-        priority = project.getPriority();
-        taskSet = project.getTaskSet();
-
-    }
+    Long id;
+    private String name;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private Date startDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private Date completionDate;
+    private ProjectStatus status;
+    private int priority;
+    private List<Long> taskSet;
 }

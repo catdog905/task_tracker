@@ -27,12 +27,13 @@ public class ProjectServiceImpl implements ProjectService {
         this.projectsRepository = projectsRepository;
     }
 
-
+    // REV: ???
     @Override
     public void createProject() {
         projectsRepository.save(new Project());
     }
 
+    // REV: ?
     @Override
     public void deleteProject(Long projectId) {
         projectsRepository.deleteById(projectId);
@@ -47,11 +48,17 @@ public class ProjectServiceImpl implements ProjectService {
                 .startDate(format.parse(projectSubmitForm.getStartDate()))
                 .completionDate(format.parse(projectSubmitForm.getCompletionDate()))
                 .status(projectSubmitForm.getStatus())
-                .taskSet(projectsRepository.getById(projectId).getTaskSet())
+                //.taskSet(projectsRepository.getById(projectId).getTaskSet())
                 .priority(projectSubmitForm.getPriority())
                 .build());
     }
 
+    @Override
+    public ProjectDTO getProjectDTOWithSortedTaskList(ProjectDTO projectDTO, TasksSortBy tasksSortBy, HowSort howSort) {
+        return null;
+    }
+
+    /*
     @Override
     public ProjectDTO getProjectDTOWithSortedTaskList(ProjectDTO projectDTO, TasksSortBy tasksSortBy, HowSort howSort) {
         Comparator<Task> comparator = Comparator.comparing(Task::getName);
@@ -66,12 +73,19 @@ public class ProjectServiceImpl implements ProjectService {
                 comparator = Comparator.comparing(Task::getPriority);
         }
         List<Task> taskList = projectDTO.getTaskSet().stream().sorted(comparator).collect(Collectors.toList());
-        ProjectDTO newProjectDTO = new ProjectDTO(projectDTO);
+        ProjectDTO newProjectDTO = ProjectDTO.builder()
+                .name(projectDTO.getName())
+                .startDate(projectDTO.getStartDate())
+                .completionDate(projectDTO.getCompletionDate())
+                .priority(projectDTO.getPriority())
+                .status(projectDTO.getStatus())
+                .taskSet(projectDTO.getTaskSet())
+                .build();
         if (howSort == HowSort.DESCENDING)
             Collections.reverse(taskList);
         newProjectDTO.setTaskSet(taskList);
         return newProjectDTO;
-    }
+    }*/
 
     @Override
     public List<ProjectDTO> sortProjectDTOListAccordingConditions(List<ProjectDTO> projectsDTO, ProjectSortBy projectSortBy, HowSort howSort) {

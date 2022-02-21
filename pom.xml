@@ -11,8 +11,8 @@
     <groupId>ru.innop</groupId>
     <artifactId>TaskTraker</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>TaskTraker</name>
-    <description>TaskTraker</description>
+    <name>TaskTracker</name>
+    <description>TaskTracker</description>
     <properties>
         <java.version>11</java.version>
     </properties>
@@ -46,6 +46,20 @@
             <artifactId>postgresql</artifactId>
             <version>42.2.24</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven.surefire</groupId>
+            <artifactId>surefire-junit47</artifactId>
+            <version>2.19.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.modelmapper/modelmapper -->
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
