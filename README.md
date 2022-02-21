@@ -7,7 +7,7 @@ Web API for storing and managing data of project list
   - Spring boot
 - Database
   - PostgreSQL
--Documentation
+- Documentation
   - Swagger
 - Build
   - Docker
