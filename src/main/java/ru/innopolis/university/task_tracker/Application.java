@@ -1,4 +1,4 @@
-package ru.innopolis.university.task_tracker.apps;
+package ru.innopolis.university.task_tracker;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;

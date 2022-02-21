@@ -8,10 +8,10 @@
         <version>2.6.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>ru.innop</groupId>
-    <artifactId>TaskTraker</artifactId>
+    <groupId>ru.innopolis.university</groupId>
+    <artifactId>task_tracker</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>TaskTracker</name>
+    <name>task_tracker</name>
     <description>TaskTracker</description>
     <properties>
         <java.version>11</java.version>
