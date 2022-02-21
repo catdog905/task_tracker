@@ -9,8 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-// REV: Possibly redundant annotations
-@ComponentScan("ru.innopolis.university.task_tracker")
 @EntityScan("ru.innopolis.university.task_tracker.models")
 @EnableJpaRepositories(basePackages = "ru.innopolis.university.task_tracker.repositories")
 public class Application {
