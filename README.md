@@ -1,5 +1,5 @@
 # Task tracker
-Web API fore storing and managing data of project list
+Web API for storing and managing data of project list
 ## Used technologies
 - Programming language
   - Java
@@ -17,3 +17,5 @@ $ git clone https://github.com/ruca905/task_tracker
 $ cd task_tracker
 $ docker-compose -f docker-compose-dev.yml up -d
 ```
+## Project documentation
+Documentation available using the [link](http://localhost:20000/swagger-ui/index.html#/) after build and deploy
